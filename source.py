@@ -2,7 +2,7 @@ import numpy as np
 from scipy.io import wavfile
 import sounddevice as sd
 
-sr, stereo = wavfile.read("audio.wav")
+sr, stereo = wavfile.read("f.wav")
 sd.play(stereo, sr)
 sd.wait()  # Đợi phát xong
 with open("hz.txt", "w") as f:

@@ -28,7 +28,8 @@ with open("chanel1.txt", "r") as f1, open("chanel2.txt", "r") as f2:
         # np.set_printoptions(suppress=True)  # Tắt hiển thị số mũ
         # print(deConvolution(chanel1, w))
         # print(deConvolution(chanel2, w))
-        stereo_recovered = np.column_stack((deConvolution(chanel1, w), deConvolution(chanel2, w)))
+        # stereo_recovered = np.column_stack((deConvolution(chanel1, w), deConvolution(chanel2, w)))
+        stereo_recovered = np.column_stack((chanel1, chanel2))
         # print(stereo_recovered)
         # break
         # 🔹 Cộng dồn vào danh sách
