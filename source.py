@@ -8,7 +8,7 @@ sd.wait()  # Đợi phát xong
 with open("hz.txt", "w") as f:
     f.write(str(sr))
 with open("kernel.txt", "r") as f:
-    w = np.array([float(num) for num in f.readline().split()])
+    w = np.array([int(num) for num in f.readline().split()])
 
 def clearing(x, file):
     with open(file, "w") as f: 

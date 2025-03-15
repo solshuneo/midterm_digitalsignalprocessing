@@ -4,7 +4,7 @@ import sounddevice as sd
 with open("hz.txt", "r") as f:
     sr = int(f.read())
 with open("kernel.txt", "r") as f:
-    w = np.array([float(num) for num in f.readline().split()])
+    w = np.array([int(num) for num in f.readline().split()])
 
 def deConvolution(y, w):
     w_len = len(w)
@@ -23,8 +23,8 @@ stereo_audio_list = []
 
 with open("chanel1.txt", "r") as f1, open("chanel2.txt", "r") as f2:
     for line1, line2 in zip(f1, f2):
-        chanel1 = np.array([float(num) for num in line1.split()])
-        chanel2 = np.array([float(num) for num in line2.split()])
+        chanel1 = np.array([int(num) for num in line1.split()])
+        chanel2 = np.array([int(num) for num in line2.split()])
         # np.set_printoptions(suppress=True)  # Tắt hiển thị số mũ
         # print(deConvolution(chanel1, w))
         # print(deConvolution(chanel2, w))
@@ -36,5 +36,5 @@ with open("chanel1.txt", "r") as f1, open("chanel2.txt", "r") as f2:
 
 stereo_audio = np.vstack(stereo_audio_list)
 
-sd.play(stereo_audio, samplerate=sr)
+sd.play(stereo_audio * 0.00001, samplerate=sr)
 sd.wait()  
