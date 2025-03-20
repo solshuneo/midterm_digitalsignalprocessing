@@ -6,11 +6,9 @@ from scipy.io import wavfile
 import sys
 from time import sleep 
 sys.stdout.reconfigure(encoding='utf-8')
-sr, stereo = wavfile.read("f.wav")
+sr, stereo = wavfile.read("studio_male.wav")
 print("Thành công đọc file audio!")
 
-print("phát âm thanh")
-sd.play(stereo, sr) 
 print("hiển thị sinal lên biểu đồ")
 plt.figure(figsize=(10, 4))
 plt.plot(stereo[:, 0], label="Waveform")
@@ -20,7 +18,7 @@ plt.title("Audio Signal")
 plt.legend()
 plt.show()
 
-sd.wait()  # Đợi phát xong
+sd.wait()
 
 print("lưu tần số audio")
 with open("hz.txt", "w") as f:
@@ -41,7 +39,7 @@ def clearing(x, file):
         while idx * maxSub <= len(x):
             process(x[idx * maxSub: min(idx * maxSub + maxSub, len(x))])
             idx += 1
-sleep(5)
+
 print("chúng ta các tín hiệu thành các tín hiệu nhỏ có độ dài là 10, rồi lần lượt lưu vào từng hàng vào file")
 clearing(np.array(stereo[:, 1]), file="chanel2.txt")
 clearing(np.array(stereo[:, 0]), file="chanel1.txt")

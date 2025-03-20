@@ -44,24 +44,30 @@ with open("chanel1.txt", "r") as f1, open("chanel2.txt", "r") as f2:
 
 stereo_audio = np.vstack(stereo_audio_list)
 origin_audio = np.vstack(origin_audio_list)
-def plot_waveform(stereo_audio, sr=44100):
-    time = np.linspace(0, len(stereo_audio) / sr, num=len(stereo_audio))
+def plot_waveform(stereo_audio, str, sr=44100):
     plt.figure(figsize=(10, 4))
-    plt.subplot(1, 1, 1)
-    plt.plot(time, stereo_audio[:, 0], color='blue', label='Channel 1 (Left)')
+    plt.plot(stereo_audio[:, 0], label='Waveform')
     plt.xlabel("length of signal")
     plt.ylabel("How a big!")
-    plt.title("Audio Signal")
+    plt.title(str)
     plt.legend()
     plt.tight_layout()
     plt.show()
 
-sleep(3)
-print("Âm thanh sau khi nhận được và chuyển đổi")
-sd.play(stereo_audio * 0.0001, samplerate=sr)
-plot_waveform(origin_audio)
-sleep(3)
-print("Am thanh khi nhận được")
-sd.play(origin_audio * 0.00001, samplerate=sr)
-plot_waveform(stereo_audio)
+print("hình ảnh âm thanh khi nhận được")
+plot_waveform(stereo_audio, "receive")
 sd.wait()  
+print("hình ảnh âm thanh sau khi nhận được và chuyển đổi")
+plot_waveform(origin_audio, "decode")
+
+from scipy.io import wavfile
+
+# Đảm bảo giá trị âm thanh nằm trong khoảng hợp lệ [-1, 1]
+stereo_audio_normalized = stereo_audio / np.max(np.abs(stereo_audio))
+origin__audio_normalized = origin_audio / np.max(np.abs(origin_audio))
+
+# Ghi dữ liệu âm thanh ra file WAV
+wavfile.write('decode_audio.wav', sr, (stereo_audio_normalized * sr).astype(np.int16))
+wavfile.write('receive_audio.wav', sr, (origin__audio_normalized * sr).astype(np.int16))
+
+print("Lưu file thành công")
