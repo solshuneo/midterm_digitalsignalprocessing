@@ -49,4 +49,3 @@ clearing(np.array(stereo[:, 0]), file="chanel1.txt")
 sleep(1)
 print("lúc này chúng ta sẽ có 2 file chanel1 và chanel 2 và 1 file lưu tần số là hz")
 
-

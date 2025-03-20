@@ -46,26 +46,22 @@ stereo_audio = np.vstack(stereo_audio_list)
 origin_audio = np.vstack(origin_audio_list)
 def plot_waveform(stereo_audio, sr=44100):
     time = np.linspace(0, len(stereo_audio) / sr, num=len(stereo_audio))
-    
     plt.figure(figsize=(10, 4))
-    
     plt.subplot(1, 1, 1)
     plt.plot(time, stereo_audio[:, 0], color='blue', label='Channel 1 (Left)')
     plt.xlabel("length of signal")
     plt.ylabel("How a big!")
     plt.title("Audio Signal")
     plt.legend()
-
-
     plt.tight_layout()
     plt.show()
 
 sleep(3)
 print("Âm thanh sau khi nhận được và chuyển đổi")
-sd.play(origin_audio * 0.00001, samplerate=sr)
+sd.play(stereo_audio * 0.0001, samplerate=sr)
 plot_waveform(origin_audio)
 sleep(3)
 print("Am thanh khi nhận được")
-sd.play(stereo_audio * 0.00001, samplerate=sr)
+sd.play(origin_audio * 0.00001, samplerate=sr)
 plot_waveform(stereo_audio)
 sd.wait()  
