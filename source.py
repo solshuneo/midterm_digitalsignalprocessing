@@ -1,8 +1,23 @@
 import numpy as np
 from scipy.io import wavfile
 import sounddevice as sd
+import matplotlib.pyplot as plt
+from scipy.io import wavfile
 
+# Đọc tệp âm thanh
 sr, stereo = wavfile.read("f.wav")
+
+# Vẽ tín hiệu âm thanh
+plt.figure(figsize=(10, 4))
+plt.plot(stereo[:, 0], label="Waveform")
+plt.xlabel("length of signal")
+plt.ylabel("How a big!")
+plt.title("Audio Signal")
+plt.legend()
+plt.show()
+# sr, stereo = wavfile.read("f.wav")
+print(f"Sampling Rate: {sr}")
+print(f"Shape of Audio Data: {stereo.shape}")
 sd.play(stereo, sr)
 sd.wait()  # Đợi phát xong
 with open("hz.txt", "w") as f:
