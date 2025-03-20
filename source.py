@@ -9,6 +9,8 @@ sys.stdout.reconfigure(encoding='utf-8')
 sr, stereo = wavfile.read("f.wav")
 print("Thành công đọc file audio!")
 
+print("phát âm thanh")
+sd.play(stereo, sr) 
 print("hiển thị sinal lên biểu đồ")
 plt.figure(figsize=(10, 4))
 plt.plot(stereo[:, 0], label="Waveform")
@@ -18,8 +20,6 @@ plt.title("Audio Signal")
 plt.legend()
 plt.show()
 
-print("phát âm thanh")
-sd.play(stereo, sr) 
 sd.wait()  # Đợi phát xong
 
 print("lưu tần số audio")
