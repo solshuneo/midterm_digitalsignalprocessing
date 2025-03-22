@@ -55,10 +55,10 @@ def plot_waveform(stereo_audio, str, sr=44100):
     plt.show()
 
 print("hình ảnh âm thanh khi nhận được")
-plot_waveform(stereo_audio, "receive")
+plot_waveform(origin_audio, "receive")
 sd.wait()  
 print("hình ảnh âm thanh sau khi nhận được và chuyển đổi")
-plot_waveform(origin_audio, "decode")
+plot_waveform(stereo_audio, "decode")
 
 from scipy.io import wavfile
 

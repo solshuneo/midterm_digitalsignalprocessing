@@ -6,7 +6,7 @@ from scipy.io import wavfile
 import sys
 from time import sleep 
 sys.stdout.reconfigure(encoding='utf-8')
-sr, stereo = wavfile.read("studio_male.wav")
+sr, stereo = wavfile.read("studio_female.wav")
 print("Thành công đọc file audio!")
 
 print("hiển thị sinal lên biểu đồ")
